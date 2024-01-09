@@ -9,10 +9,10 @@ abstract class TravelRemoteDataSource {
   Future<TravelApiResponse> getTravelData();
 }
 
-class SurahRemoteDataSourceImpl implements TravelRemoteDataSource {
+class TravelRemoteDataSourceImpl implements TravelRemoteDataSource {
   final NetworkManagerImpl networkManager;
 
-  SurahRemoteDataSourceImpl({
+  TravelRemoteDataSourceImpl({
     required this.networkManager,
   });
 

@@ -3,7 +3,17 @@ import 'package:sqflite/sqflite.dart';
 
 import '../../data/model/travel_data_response.dart';
 
-class DatabaseHelper {
+abstract class IDatabase {
+  Future<int> insertData(City data);
+
+  Future<int> deleteData(City data);
+
+  Future<City?> queryDataById(String cityId);
+
+  Future<List<City>?> queryAllFavoriteCities();
+}
+
+class DatabaseHelper extends IDatabase {
   static Database? _database;
 
   static Future<Database> get database async {
@@ -29,17 +39,20 @@ class DatabaseHelper {
     ''');
   }
 
+  @override
   Future<int> insertData(City data) async {
     var response = await _database!.insert('city', data.toJson(),
         conflictAlgorithm: ConflictAlgorithm.replace);
     return response;
   }
 
+  @override
   Future<int> deleteData(City data) async {
     return await _database!
         .delete('city', where: 'id = ?', whereArgs: [data.id]);
   }
 
+  @override
   Future<City?> queryDataById(String cityId) async {
     var result = await _database!.query(
       'city',
@@ -53,6 +66,7 @@ class DatabaseHelper {
     }
   }
 
+  @override
   Future<List<City>?> queryAllFavoriteCities() async {
     var result = await _database!.rawQuery('SELECT * FROM city');
     if (result.isNotEmpty) {

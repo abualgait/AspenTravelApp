@@ -58,7 +58,7 @@ class HomeStateNotifier extends StateNotifier<CityUIStates> {
     var response = await getFavoriteCitiesUseCase(NoParams());
     response.fold(
       (failure) {
-        if (failure is ServerFailure) {
+        if (failure is DatabaseFailure) {
           state = state.copyWith(
               isLoading: false,
               isFavLoading: false,

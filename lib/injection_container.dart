@@ -45,7 +45,7 @@ Future<void> init() async {
 
   // Data Source
   sl.registerLazySingleton<TravelRemoteDataSource>(() =>
-      SurahRemoteDataSourceImpl(networkManager: NetworkManagerImpl(sl())));
+      TravelRemoteDataSourceImpl(networkManager: NetworkManagerImpl(sl())));
 
   sl.registerLazySingleton<FavoriteCityLocalDataSource>(
       () => FavoriteCityLocalDataSourceImpl(databaseHelper: DatabaseHelper()));

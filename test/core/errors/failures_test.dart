@@ -21,8 +21,19 @@ void main() {
           "ConnectionFailure{errorMessage: $messageConnectionFailure}");
     });
 
-    test("make sure ConnectionFailure props return [tErrorMessage]", () {
+    test("make sure ConnectionFailure props return [messageConnectionFailure]", () {
       expect(ConnectionFailure().props, [messageConnectionFailure]);
+    });
+  });
+
+  group("DatabaseFailure", () {
+    test("make sure DatabaseFailure toString return true results", () {
+      expect(DatabaseFailure().toString(),
+          "DatabaseFailure{errorMessage: $messageDataBaseFailure}");
+    });
+
+    test("make sure ConnectionFailure props return [messageDataBaseFailure]", () {
+      expect(DatabaseFailure().props, [messageDataBaseFailure]);
     });
   });
 }
