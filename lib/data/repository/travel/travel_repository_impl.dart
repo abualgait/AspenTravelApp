@@ -39,8 +39,8 @@ class TravelRepositoryImpl implements TravelRepository {
     try {
       var response = await favoriteCityLocalDataSource.getAllFavoriteCities();
       return Right(response);
-    } on DioException catch (error) {
-      return Left(ServerFailure(error.message ?? "Unknown Error"));
+    } on Exception catch (error) {
+      return Left(DatabaseFailure());
     }
   }
 

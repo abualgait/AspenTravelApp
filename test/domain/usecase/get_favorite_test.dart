@@ -31,7 +31,7 @@ void main() {
 
   test("make sure getFavoriteCitiesUseCase return failure", () async {
     when(() => mockTravelRepository.getFavoriteCities())
-        .thenAnswer((_) async => Left(DatabaseFailure()));
+        .thenAnswer((_) async => Future(() => Left(DatabaseFailure())));
 
     var result = await getFavoriteCitiesUseCase.call(NoParams());
     expect(result, Left(DatabaseFailure()));
